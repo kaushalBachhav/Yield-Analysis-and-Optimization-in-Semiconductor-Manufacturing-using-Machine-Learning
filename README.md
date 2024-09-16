@@ -6,17 +6,7 @@ A complex modern semiconductor manufacturing process is normally under consisten
 
 In this project,  <b>[SECOM](https://archive.ics.uci.edu/ml/datasets/secom/)</b>  data-set is first screened in order to identify effective parameters on semiconductor production yield. Then, more analysis is conducted to bring more insight from the data and recommend optimization potential throughout the process. At the end, machine learning technique is used to develop a data-driven model for yield prediction at final stage of fabrication, based on operation data and sensor measurements gathered throughout the process. This notebook is organized as follows: 
 
-# Table of Contents
-1. [Data-Set Description](#DSD)
-2. [Dimension Reduction](#DR)
-3. [Exploratory Data Analysis (EDA)](#EDA)
-4. [Statistical Analysis & Hypothesis Testing](#SAHT)
-5. [Time Series Analysis](#TSA)
-6. [Imbalanced Data](#ID)
-7. [Machine Learning Model Development](#MLMD)
-8. [XGB Model Optimization](#XGBMO)
-9. [Final Note](#FN)
-
+# The notebook content is organized as follows:
 
 
 ### <a name="DSD"></a>1. Data-Set Description
@@ -28,12 +18,11 @@ Each example represents a single production entity with associated measured feat
 ### <a name="DR"></a> 2. Dimension Reduction
 
 As mentioned earlier, there are 591 features collected for each product, but only fraction of them are really significant in yield analysis and the rest are trivial or correlated. One way to reduce the dimension of unnecessary data is to employ Lasso regularization technique. This technique identifies feature significance based on its variance. Therefore, features with smaller variances (less significant) will vanish over the course of regularization. Using this technique decreases number of features and usually considered as a first step in feature selection.   
-
-In LASSO regularization technique, by tuning alpha (regularization rate) one can determine how many features to remain in the data-set. It is recommended to examine range of regularization rates to reach the optimal value. As shown above, in current case alpha = 0.2 is chosen as the optimal value, which results in drastic reduction in number of features from 591 to 41! 
+In LASSO regularization technique, by tuning alpha (regularization rate) one can determine how many features to remain in the data-set. It is recommended to examine range of regularization rates to reach the optimal value. As in current case alpha = 0.2 is chosen as the optimal value, which results in drastic reduction in number of features from 591 to 41! 
  
  ### <a name="EDA"></a> 3- Exploratory Data Analysis (EDA)
 
-We start exploring selected features by making correlation coefficient pair plot. As shown below, there are few correlated features in remaining data-set. If our desired machine learning technique is prone to correlated data then this issue needs to be addressed before feeding data to the ML model. But more importantly, this plot shows no significant correlation between any of these features and final label column. This observation can raise concern that the collected data might not be a good descriptor of the final label. 
+We start exploring selected features by making correlation coefficient pair plot.  If our desired machine learning technique is prone to correlated data then this issue needs to be addressed before feeding data to the ML model. But more importantly, this plot shows no significant correlation between any of these features and final label column. This observation can raise concern that the collected data might not be a good descriptor of the final label. 
 Understanding data variations and outliers is the next step in exploratory data analysis. Box plot can visually represent both concepts in a concise way. As it is evident, some of these features vary couple order of magnitudes and almost all of them suffer from outliers. These are significant issues which needs to be considered later on. Unfortunately because of the anonymity of data-set, it is very difficult to understand nature of these outliers, in order to address them accordingly. It is very important that in model selection take all these factors into account. 
 
 
